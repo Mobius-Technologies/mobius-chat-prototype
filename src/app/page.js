@@ -188,13 +188,15 @@ export default function Home() {
   <motion.div className="dummy"></motion.div>
   </motion.div>
    
-   <motion.div className='block !max-w-full' animate={searchbarHolder}>
+   <motion.div className='block !max-w-full' animate={searchbarHolder}
+   initial={{y: 48, width: 0, maxWidth: 0}}
+   >
 
     <motion.div className="flex relative mx-auto max-w-full">
     <motion.textarea layout
     ref={textareaRef}
     animate={searchbar}
-    initial={{width: '100%', height: 0, y: 0, margin: 0, padding: 0}}
+    initial={{width: 0, height: 0, y: 0, margin: 0, padding: 0, scale: .8 }}
     transition={{
       type: "spring",
       stiffness: 100,
