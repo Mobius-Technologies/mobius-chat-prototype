@@ -55,6 +55,10 @@ text: 'Do you have any other questions?'}
 ]
 
 export default function Home() {
+
+  const [urlTyped, setUrlTyped] = useState('https://wikipedia.com')
+  const [url, setUrl] = useState('https://wikipedia.com')
+
   const [select, setSelect] = useState(0)
   const [messages, setMessages] = useState(fake)
   const [inputValue, setInputValue] = useState('')
@@ -135,7 +139,11 @@ export default function Home() {
 
   return (
     <div>
-      
+      <div className='fixed left-2 bottom-2 z-50 flex rounded-md'>
+        <input placeholder='url' className='p-2 rounded-md bg-slate-300/50 backdrop-blur-md' value={urlTyped} onChange={(e)=>setUrlTyped(e.target.value)} />
+        <button className='mx-2 bg-slate-400 p-2 rounded-md backdrop-blur-md' onClick={()=>setUrl(urlTyped)}>{"Go -->"}</button>
+      </div>
+      <iframe className='w-screen h-screen fixed' src={url} placeholder={'https://website.com'} />
 
       <motion.div className='z-50 w-32 bg-gradient-to-br from-gray-700 to-gray-900 text-white h-8 rounded-full cursor-pointer group px-4 transition-all hover:scale-110 flex justify-center items-center place-content-center fixed right-2 bottom-2' onClick={()=>animate()}
   animate={icon}
@@ -250,7 +258,6 @@ export default function Home() {
 
    </motion.div>
    </motion.div>
-   {height.current}
    </div>
   )
 }
