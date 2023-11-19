@@ -9,7 +9,7 @@ import {IoSend} from 'react-icons/io5'
 import {FaLocationArrow, FaPlaneDeparture} from 'react-icons/fa'
 import {LiaCompressArrowsAltSolid} from 'react-icons/lia'
 
-import Describe from '../../components/prototypes/image'
+import Describe from './image'
 
 const fake = [
   {type: "question",
