@@ -22,3 +22,10 @@ border-radius: 40px;
 ::-webkit-scrollbar-thumb:hover {
 background: #555;
 }
+
+.card-holder{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(256px,1fr));
+    align-content: start;
+    gap: 1rem;
+  }
