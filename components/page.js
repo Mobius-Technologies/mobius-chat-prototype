@@ -1,57 +1,57 @@
 "use client"
 
-import { motion, useAnimation, useMotionValue } from 'framer-motion'
+import { motion, useAnimation } from 'framer-motion'
 import { useState, useEffect, useRef } from 'react'
-import Describe from '../../../components/prototypes/image'
-import { BsChatRightFill, BsSendFill } from 'react-icons/bs'
+
+import Describe from './prototypes/image'
 
 
 const fake = [
-    {type: "question",
-    text: "What are some shoes that you would recommend for me?"
-  },
-  {type: "answer",
-  text: "I'd recommend these Nike shoes. Please tell me if you have any questions!",
-  addons: [
-    {type: 'image',
-  src: 'https://www.tennisnuts.com/images/product/full/NIKE-FREE-50-642198_406_A_PREM.jpg',
-  markdown: `### Nikes
-  * bullet point
-  * bullet point
-  * bullet point\n
-  ~$100~ **$50**`},
+  {type: "question",
+  text: "What are some shoes that you would recommend for me?"
+},
+{type: "answer",
+text: "I'd recommend these Nike shoes. Please tell me if you have any questions!",
+addons: [
   {type: 'image',
-  src: 'https://www.tennisnuts.com/images/product/main/DR6966-001_C.jpg?61',
-  markdown: `### Nikes
-  * bullet point
-  * bullet point
-  * bullet point\n
-  ~$100~ **$50**`},
-  {type: 'image',
-  src: 'https://www.tennisnuts.com/images/product/main/DH0219-402_C.jpg?61',
-  markdown: `### Nikes
-  * bullet point
-  * bullet point
-  * bullet point\n
-  ~$100~ **$50**`},
-  {type: 'image',
-  src: 'https://www.tennisnuts.com/images/product/main/DH2603-400_C.jpg?61',
-  markdown: `### Nikes
-  * bullet point
-  * bullet point
-  * bullet point\n
-  ~$100~ **$50**`}
-  ]
-  },{type: "question",
-  text: "oh."
-  },
-  {type: 'answer',
-  text: 'Do you have any other questions?'}
-  ]
+src: 'https://www.tennisnuts.com/images/product/full/NIKE-FREE-50-642198_406_A_PREM.jpg',
+markdown: `### Nikes
+* bullet point
+* bullet point
+* bullet point\n
+~$100~ **$50**`},
+{type: 'image',
+src: 'https://www.tennisnuts.com/images/product/main/DR6966-001_C.jpg?61',
+markdown: `### Nikes
+* bullet point
+* bullet point
+* bullet point\n
+~$100~ **$50**`},
+{type: 'image',
+src: 'https://www.tennisnuts.com/images/product/main/DH0219-402_C.jpg?61',
+markdown: `### Nikes
+* bullet point
+* bullet point
+* bullet point\n
+~$100~ **$50**`},
+{type: 'image',
+src: 'https://www.tennisnuts.com/images/product/main/DH2603-400_C.jpg?61',
+markdown: `### Nikes
+* bullet point
+* bullet point
+* bullet point\n
+~$100~ **$50**`}
+]
+},{type: "question",
+text: "oh."
+},
+{type: 'answer',
+text: 'Do you have any other questions?'}
+]
 
 export default function Home() {
-  
-    const [urlTyped, setUrlTyped] = useState('https://wikipedia.com')
+
+  const [urlTyped, setUrlTyped] = useState('https://wikipedia.com')
   const [url, setUrl] = useState('https://wikipedia.com')
 
   const [select, setSelect] = useState(0)
@@ -91,11 +91,7 @@ export default function Home() {
 
   
   const scrollToBottom = () => {
-    try{
-        document.getElementsByClassName('dummy')[0].scrollIntoView({ behavior: "smooth" });
-    }catch(err){
-        console.log(err)
-    }
+    document.getElementsByClassName('dummy')[0].scrollIntoView({ behavior: "smooth" });
   }
   
   const changeInputHeight = () => {
@@ -117,6 +113,8 @@ export default function Home() {
     controls.start({ height: select ? 'calc(100vh - 256px)' : 'calc(100vh - 128px)' });
     controls.start({scale: select? .9 : 1})
     controls.start({maxWidth: 700})
+    //controls.start({x: select ? -128 + 16 : -64 + 16})
+    //controls.start({y: select ? -128 + 16 : -64 + 16})
     controls.start({opacity: select ? 0:1})
 
     searchbarHolder.start({ y: select ? 48 : 0, transition: {delay: select? 0 : 0.1} });
@@ -132,6 +130,7 @@ export default function Home() {
 
 
   }
+
 
   return (
     <div>
