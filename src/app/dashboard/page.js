@@ -20,7 +20,7 @@ import { motion } from 'framer-motion'
 const FakeCard = ({ listView }) => {
   return (
     <motion.div layout>
-    <Card className={`grow ${listView == false ? '' : ''} hover:shadow-md transition-all duration-250`}>
+    <Card className={`w-full ${listView == false ? '' : ''} hover:shadow-md transition-all duration-250`}>
       <div className="flex">
         <a href="./dashboard/project-1" className="w-full">
           <div>
@@ -52,7 +52,7 @@ const FakeCard = ({ listView }) => {
 export default function Home() {
   const [listView, setListView] = useState(true)
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <Header />
 
       <div className="w-[800px] mx-auto max-w-full p-2">
@@ -95,12 +95,20 @@ export default function Home() {
         </div>
 
 
-        <Grid className={`gap-2 mt-2 ${listView == false ? "card-holder mt-4" : ""}`}>
+        <Grid className={`gap-2 h-fit overflow-y-clip py-2 ${listView == false ? "card-holder mt-4" : ""}`}>
+          <FakeCard listView={listView} />
+          <FakeCard listView={listView} />
+          <FakeCard listView={listView} />
+          <FakeCard listView={listView} />
+          <FakeCard listView={listView} />
+          <FakeCard listView={listView} />
+          <FakeCard listView={listView} />
+          <FakeCard listView={listView} />
+          <FakeCard listView={listView} />
           <FakeCard listView={listView} />
           <FakeCard listView={listView} />
           <FakeCard listView={listView} />
         </Grid>
-
 
       </div>
     </div>
