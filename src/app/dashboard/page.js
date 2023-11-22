@@ -19,6 +19,7 @@ import { motion } from 'framer-motion'
 
 const FakeCard = ({ listView }) => {
   return (
+    <motion.div layout>
     <Card className={`grow ${listView == false ? '' : ''} hover:shadow-md transition-all duration-250`}>
       <div className="flex">
         <a href="./dashboard/project-1" className="w-full">
@@ -32,7 +33,7 @@ const FakeCard = ({ listView }) => {
         <div>
         </div>
         <div className="dropdown ml-auto my-auto dropdown-end">
-          <button className="text-2xl text-center">...</button>
+          <button className="text-2xl text-center align-middle">...</button>
           <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
             <li><a>Item 1</a></li>
             <li><a>Item 2</a></li>
@@ -41,6 +42,7 @@ const FakeCard = ({ listView }) => {
       </div>
 
     </Card>
+    </motion.div>
 
   )
 }
@@ -57,7 +59,7 @@ export default function Home() {
         <div className="flex">
           <TextInput className="" placeholder="Search..." />
 
-          <div className="shadow-md flex w-fit rounded-md ml-2">
+          <Card className="flex w-fit rounded-md ml-2 p-0">
 
             <div className="relative w-10 h-10 cursor-pointer">
               <motion.div className={`absolute w-8 h-8 flex rounded-md place-items-center justify-between items-center m-auto ml-1 cursor-pointer`}
@@ -80,7 +82,7 @@ export default function Home() {
                 <motion.div className="absolute bg-slate-200 w-8 h-8 m-auto top-1 left-1 rounded-md" layoutId="listView"></motion.div>
               ) : null}
             </motion.div>
-          </div>
+          </Card>
 
           <div className="dropdown ml-auto my-auto dropdown-end flex justify-center">
             <Button className="!flex items-center place-content-center justify-center h-10 ml-2 rounded-full group"><span className="flex">Add New...<ChevronDownIcon className="h-full m-auto ml-4" /></span></Button>
