@@ -38,7 +38,12 @@ export default function Home(){
             <div className="absolute bg-gradient-to-r from-red-500 to-pink-500 bg-clip-text text-transparent font-bold text-8xl">Mobius.</div>
             <div className="absolute bg-gradient-to-r from-red-500 to-pink-500 bg-clip-text text-transparent blur-2xl font-bold text-8xl">Mobius.</div>
             </div>
-            <iframe src="./demo" className={`transition-all duration-500 ease-out fixed rounded-md xl:bg-base-200 mx-auto origin-top overflow-visible backdrop-blur will-change-auto ${scrollHeight < 200 || scrollHeight > 950 ? 'scale-75 -z-10' : 'scale-100 z-10'} ${scrollHeight>950 ? 'opacity-0' : 'opacity-100'} [--rtl-reverse:1] [${scrollHeight < 200 ? 'transform:rotateX(20deg)rotateZ(-20deg)skewY(8deg)scale(1)' : ''}] rtl:[--rtl-reverse:-1] rtl:[${scrollHeight < 200 ? 'transform:rotateX(20deg)rotateZ(20deg)skewY(-8deg)scale(1)' : ''}] max-[1280px]:![transform:translate3d(0,0,0)] xl:h-[32rem] xl:w-[50rem] xl:rounded-e-none xl:shadow-md xl:backdrop-blur-0`}/>
+            <motion.iframe initial={{y: 24, opacity: 0, transform: 'rotateX(20deg)rotateZ(-20deg)skewY(8deg)scale(.7)translate3d(-80px,0px,-100px)'}} animate={{y: 0,
+            transform: (scrollHeight < 200 ? 'rotateX(20deg)rotateZ(-20deg)skewY(8deg)scale(.7)translate3d(-80px,0,0)' : ''),
+            scale: (scrollHeight < 950 ? 1 : .2),
+            opacity: (scrollHeight < 950 ? 1 : 0)
+            }} src="./demo" className={`transition-all duration-500 ease-out fixed rounded-md xl:bg-base-200 mx-auto origin-top overflow-visible backdrop-blur will-change-auto ${scrollHeight < 200 || scrollHeight > 950 ? 'scale-75 -z-10' : 'scale-100 z-10'} ${scrollHeight>950 ? 'opacity-0' : 'opacity-100'} h-[32rem] w-[50rem] shadow-md backdrop-blur-0`}/>
+
         </div>
         <div style={{height:'100vh'}}></div>
 
