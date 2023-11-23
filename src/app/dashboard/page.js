@@ -17,7 +17,7 @@ import { Grid } from "@tremor/react";
 import { DashboardIcon, ListBulletIcon, ChevronDownIcon } from '@radix-ui/react-icons'
 import { motion } from 'framer-motion'
 
-const FakeCard = ({ listView }) => {
+const FakeCard = ({ listView, project, description }) => {
   return (
     <motion.div layout="position">
     <Card className={`w-full ${listView == false ? '' : ''} hover:shadow-md transition-all duration-250`}>
@@ -25,8 +25,8 @@ const FakeCard = ({ listView }) => {
         <a href="./dashboard/project-1" className="w-full">
           <div>
 
-            <Title>Project 1</Title>
-            <Subtitle>Description...</Subtitle>
+            <Title>{project}</Title>
+            <Subtitle>{description}</Subtitle>
 
           </div>
         </a>
@@ -96,18 +96,7 @@ export default function Home() {
 
 
         <Grid className={`gap-2 h-fit overflow-y-clip py-2 ${listView == false ? "card-holder mt-2" : ""}`}>
-          <FakeCard listView={listView} />
-          <FakeCard listView={listView} />
-          <FakeCard listView={listView} />
-          <FakeCard listView={listView} />
-          <FakeCard listView={listView} />
-          <FakeCard listView={listView} />
-          <FakeCard listView={listView} />
-          <FakeCard listView={listView} />
-          <FakeCard listView={listView} />
-          <FakeCard listView={listView} />
-          <FakeCard listView={listView} />
-          <FakeCard listView={listView} />
+          <FakeCard listView={listView} project={"Project 1"} description={"multi-function chatbot"} />
         </Grid>
 
       </div>
