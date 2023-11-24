@@ -88,7 +88,12 @@ const valueFormatter = (number) => {
 export default function Home({params}) {
     return (
         <div>
-            <Header />
+            <Header breadcrumbs={[
+        {name: "home",
+      href: '/dashboard'},
+      {name: 'project',
+    href: '/dashboard/' + params.slug}
+      ]}/>
 
         <div className="w-[800px] mx-auto max-w-full p-2">
  

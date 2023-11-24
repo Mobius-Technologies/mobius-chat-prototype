@@ -53,7 +53,10 @@ export default function Home() {
   const [listView, setListView] = useState(true)
   return (
     <div className="overflow-x-hidden">
-      <Header />
+      <Header breadcrumbs={[
+        {name: "home",
+      href: '/dashboard'}
+      ]}/>
 
       <div className="w-[800px] mx-auto max-w-full p-2">
         <div className="flex">
@@ -87,15 +90,14 @@ export default function Home() {
           <div className="dropdown ml-auto my-auto dropdown-end flex justify-center">
             <Button className="!flex items-center place-content-center justify-center h-10 ml-2 rounded-full group"><span className="flex">Add New...<ChevronDownIcon className="h-full m-auto ml-4" /></span></Button>
             <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52 translate-y-10">
-              <li><a>Smaller thing</a></li>
-              <li><a>Larger thing</a></li>
+              <li><a href="/new">Project</a></li>
             </ul>
           </div>
 
         </div>
 
 
-        <Grid className={`gap-2 h-fit overflow-y-clip py-2 ${listView == false ? "card-holder mt-2" : ""}`}>
+        <Grid className={`gap-2 h-fit overflow-y-clip py-2 ${listView == false ? "card-holder" : ""}`}>
           <FakeCard listView={listView} project={"Project 1"} description={"multi-function chatbot"} />
         </Grid>
 
