@@ -11,8 +11,8 @@ export default function Header({breadcrumbs}){
                 
                 <div className="flex ml-auto w-fit breadcrumbs">
                     <ul>
-                    {breadcrumbs.map((crumb)=>{
-                        return <li><a href={crumb.href}>{crumb.name}</a></li>
+                    {breadcrumbs.map((crumb, i)=>{
+                        return <li key={crumb.name + i}><a href={crumb.href}>{crumb.name}</a></li>
                     })}
                     </ul>
                 

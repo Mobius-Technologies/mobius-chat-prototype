@@ -1,9 +1,12 @@
+"use client"
+
 import { Card, Metric, Text, Title, Button, Subtitle } from "@tremor/react";
 import { AreaChart } from "@tremor/react";
 import { BarChart } from "@tremor/react";
 import Header from "../../../../components/header/header";
 import { Flex, BadgeDelta, DeltaType, Grid } from "@tremor/react";
-
+import { useState, useEffect } from "react";
+import fetchImg from "../../../../components/fetchImg";
 
 const chartdata = [
     {
@@ -55,6 +58,33 @@ const chartdata2 = [
     }
 ];
 
+function encode (input) {
+    var keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+    var output = "";
+    var chr1, chr2, chr3, enc1, enc2, enc3, enc4;
+    var i = 0;
+
+    while (i < input.length) {
+        chr1 = input[i++];
+        chr2 = i < input.length ? input[i++] : Number.NaN; // Not sure if the index 
+        chr3 = i < input.length ? input[i++] : Number.NaN; // checks are needed here
+
+        enc1 = chr1 >> 2;
+        enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
+        enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
+        enc4 = chr3 & 63;
+
+        if (isNaN(chr2)) {
+            enc3 = enc4 = 64;
+        } else if (isNaN(chr3)) {
+            enc4 = 64;
+        }
+        output += keyStr.charAt(enc1) + keyStr.charAt(enc2) +
+                  keyStr.charAt(enc3) + keyStr.charAt(enc4);
+    }
+    return output;
+}
+
 
 const categories = [
     {
@@ -86,6 +116,37 @@ const valueFormatter = (number) => {
 
 
 export default function Home({params}) {
+
+    
+
+    const [imageUrl, setImageUrl] = useState('');
+
+    const captureScreenshot = async () => {
+        const response = await fetch(`/api/img/?url=https://wikipedia.org`, {method: "POST"});
+        const data = await response.json(); // Assuming the response is JSON containing the Base64 string
+
+        // Convert Base64 string to Blob
+        const base64Image = data.image; // Assuming 'image' is the key holding the Base64 string
+        const byteCharacters = atob(base64Image);
+        const byteNumbers = new Array(byteCharacters.length);
+        for (let i = 0; i < byteCharacters.length; i++) {
+            byteNumbers[i] = byteCharacters.charCodeAt(i);
+        }
+        const byteArray = new Uint8Array(byteNumbers);
+        const blob = new Blob([byteArray], { type: 'image/png' }); // Replace 'image/png' with the correct MIME type
+
+        // Create an object URL and set it
+        const objectURL = URL.createObjectURL(blob);
+        console.log(objectURL);
+        console.log(blob);
+        setImageUrl(objectURL);
+
+    };
+
+    useEffect(()=>{
+        captureScreenshot()
+    }, [])
+
     return (
         <div>
             <Header breadcrumbs={[
@@ -98,9 +159,17 @@ export default function Home({params}) {
         <div className="w-[800px] mx-auto max-w-full p-2">
  
             <Title className="font-bold">{params.slug}</Title>
+            <Card className="my-2">
+                {imageUrl && 
+                <img src={imageUrl} />
+                }
+                {!imageUrl && 
+                <div className="animate-pulse rounded-md w-full aspect-video bg-slate-200"></div>
+                }
+            </Card>
             
 
-
+            <div className="card-holder">
             <Card className="my-2">
                 <Title>Views</Title>
                 <AreaChart
@@ -126,6 +195,7 @@ export default function Home({params}) {
                     yAxisWidth={48}
                 />
             </Card>
+            </div>
         </div>
         </div>
     )
