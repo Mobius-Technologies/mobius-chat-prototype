@@ -7,7 +7,7 @@ import Header from "../../../../components/header/header";
 import { Flex, BadgeDelta, DeltaType, Grid } from "@tremor/react";
 import { useState, useEffect } from "react";
 import fetchImg from "../../../../components/fetchImg";
-
+import {motion} from 'framer-motion'
 const chartdata = [
     {
         date: "Jan 22",
@@ -161,10 +161,10 @@ export default function Home({params}) {
             <Title className="font-bold">{params.slug}</Title>
             <Card className="my-2">
                 {imageUrl && 
-                <img src={imageUrl} />
+                <motion.img src={imageUrl} className="rounded-md" />
                 }
                 {!imageUrl && 
-                <div className="animate-pulse rounded-md w-full aspect-video bg-slate-200"></div>
+                <motion.div className="animate-pulse rounded-md w-full bg-slate-200" style={{aspectRatio: 4/3}} ></motion.div>
                 }
             </Card>
             
