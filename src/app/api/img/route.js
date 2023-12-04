@@ -1,6 +1,9 @@
 "use server"
 import { NextResponse } from 'next/server';
-import puppeteer from 'puppeteer';
+
+import puppeteer from 'puppeteer-core'
+const {executablePath} = require('puppeteer')
+
 
 export async function POST(req, res) {
     console.log(req.method)
@@ -13,7 +16,14 @@ export async function POST(req, res) {
 
 
     const url = searchParams.get('url');
-    const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'], headless: true });
+    const browser = await puppeteer.launch({
+      
+      headless: true,
+      ignoreHTTPSErrors: true,
+      executablePath: executablePath(),
+
+    });
+
     const page = await browser.newPage();
     await page.goto(url);
     const buffer = await page.screenshot({ type: 'png' });
@@ -24,6 +34,4 @@ export async function POST(req, res) {
     const base64Image = buffer.toString('base64');
 
     return NextResponse.json({image: base64Image})
-
-    res.send(buffer); // This will send the buffer as binary data
 }

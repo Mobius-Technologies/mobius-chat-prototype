@@ -122,7 +122,7 @@ export default function Home({params}) {
     const [imageUrl, setImageUrl] = useState('');
 
     const captureScreenshot = async () => {
-        const response = await fetch(`/api/img/?url=https://wikipedia.org`, {method: "POST"});
+        const response = await fetch(`/api/img/?url=https://youtube.com`, {method: "POST"});
         const data = await response.json(); // Assuming the response is JSON containing the Base64 string
 
         // Convert Base64 string to Blob

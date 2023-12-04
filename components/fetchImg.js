@@ -1,5 +1,5 @@
 "use server"
-
+/*
 const puppeteer = require('puppeteer');
 
 
@@ -14,4 +14,4 @@ export default async function fetchImg(url){
     console.log(screenshot)
 
     return JSON.parse(JSON.stringify(screenshot))
-}
+}*/
