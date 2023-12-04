@@ -1,8 +1,11 @@
 "use server"
+
+
+//TODO: FIX FOR VERCEL/SERVER SIDE (CHROME ERROR)
 import { NextResponse } from 'next/server';
 
-import puppeteer from 'puppeteer-core'
-const {executablePath} = require('puppeteer')
+import puppeteer from 'puppeteer'
+
 
 
 export async function POST(req, res) {
@@ -20,8 +23,6 @@ export async function POST(req, res) {
       
       headless: true,
       ignoreHTTPSErrors: true,
-      executablePath: executablePath(),
-
     });
 
     const page = await browser.newPage();
