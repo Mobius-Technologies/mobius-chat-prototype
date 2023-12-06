@@ -12,10 +12,12 @@ import { FaListUl } from "react-icons/fa";
 import { IoListOutline } from "react-icons/io5";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { BsChevronDown } from "react-icons/bs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Grid } from "@tremor/react";
 import { DashboardIcon, ListBulletIcon, ChevronDownIcon } from '@radix-ui/react-icons'
 import { motion } from 'framer-motion'
+
+import { supabase } from "../supabase/initiate";
 
 const FakeCard = ({ listView, project, description }) => {
   return (
@@ -48,12 +50,26 @@ const FakeCard = ({ listView, project, description }) => {
 }
 
 
-
 export default function Home() {
+
+  const [user, setUser] = useState({})
+  console.log(user.email)
+  
+useEffect(()=>{
+  async function getUser(){
+    const { data: { user } } = await supabase.auth.getUser()
+    console.log('-----')
+    console.log(user)
+    setUser(user)
+  }
+
+  getUser()
+}, [])
+
   const [listView, setListView] = useState(true)
   return (
     <div className="overflow-x-hidden">
-      <Header breadcrumbs={[
+      <Header username={user && user.email ? user.email : ''} breadcrumbs={[
         {name: "home",
       href: '/dashboard'}
       ]}/>
