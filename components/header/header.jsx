@@ -14,6 +14,7 @@ export default function Header({username, breadcrumbs}){
         router.push('/')
         console.log('exit')
     }
+    
     return(
         <div className="sticky top-0 p-2 backdrop-blur-sm flex justify-between z-50">
                 <div className="relative">
